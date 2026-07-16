@@ -25,25 +25,25 @@ describe("UtsV2Source", () => {
       return Promise.resolve(
         new Response(
           JSON.stringify({
-          data: {
-            canvas: {
-              shelves: [
-                {
-                  items: [
-                    {
-                      description: "An Apple description.",
-                      id: "umc.cmc.example",
-                      images: {},
-                      releaseDate: 1_767_225_600_000,
-                      title: "Example Film",
-                      type: "Movie",
-                      url: "https://tv.apple.com/gb/movie/example",
-                    },
-                  ],
-                },
-              ],
+            data: {
+              canvas: {
+                shelves: [
+                  {
+                    items: [
+                      {
+                        description: "An Apple description.",
+                        id: "umc.cmc.example",
+                        images: {},
+                        releaseDate: 1_767_225_600_000,
+                        title: "Example Film",
+                        type: "Movie",
+                        url: "https://tv.apple.com/gb/movie/example",
+                      },
+                    ],
+                  },
+                ],
+              },
             },
-          },
           }),
           { headers: { "content-type": "application/json" }, status: 200 },
         ),
