@@ -45,6 +45,25 @@ Adapters keep their identifiers separate. The service never assumes that an
 Apple TV UTS ID is interchangeable with an iTunes `trackId`, `artistId` or
 `collectionId`.
 
+## 📦 Install from npm
+
+Run the provider directly:
+
+```bash
+npx plex-apple-metadata-provider
+```
+
+Or install the command globally:
+
+```bash
+npm install --global plex-apple-metadata-provider
+plex-apple-metadata-provider
+```
+
+The command uses the configuration defaults below. Set environment variables
+before launching it when you need to override them. The package also exports
+`createApp` for embedding the Fastify application in another Node.js service.
+
 ## 🚀 Local development
 
 Requirements:

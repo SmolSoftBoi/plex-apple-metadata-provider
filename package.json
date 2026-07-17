@@ -3,16 +3,54 @@
   "version": "0.1.0",
   "description": "Unofficial Subler-inspired Apple catalogue metadata provider scaffold for Plex.",
   "type": "module",
-  "private": true,
+  "main": "./dist/app.js",
+  "types": "./dist/app.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/app.d.ts",
+      "import": "./dist/app.js"
+    }
+  },
+  "bin": {
+    "plex-apple-metadata-provider": "./dist/server.js"
+  },
+  "files": [
+    "dist",
+    "docs",
+    ".env.example",
+    "SECURITY.md"
+  ],
   "license": "MIT",
+  "keywords": [
+    "apple-tv",
+    "itunes",
+    "metadata",
+    "plex",
+    "plex-media-server",
+    "subler"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/SmolSoftBoi/plex-apple-metadata-provider.git"
+  },
+  "bugs": {
+    "url": "https://github.com/SmolSoftBoi/plex-apple-metadata-provider/issues"
+  },
+  "homepage": "https://github.com/SmolSoftBoi/plex-apple-metadata-provider#readme",
+  "publishConfig": {
+    "access": "public"
+  },
   "engines": {
     "node": ">=24.15.0"
   },
   "scripts": {
     "build": "tsc -p tsconfig.build.json",
-    "dev": "tsx watch src/server.ts",
+    "clean": "node --input-type=module --eval \"import { rmSync } from 'node:fs'; rmSync('dist', { recursive: true, force: true });\"",
+    "dev": "tsx watch --env-file-if-exists=.env src/server.ts",
     "lint": "eslint .",
-    "start": "node dist/server.js",
+    "prepack": "npm run build",
+    "prebuild": "npm run clean",
+    "start": "node --env-file-if-exists=.env dist/server.js",
     "test": "vitest run",
     "test:watch": "vitest",
     "typecheck": "tsc --noEmit"
