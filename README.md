@@ -45,24 +45,27 @@ Adapters keep their identifiers separate. The service never assumes that an
 Apple TV UTS ID is interchangeable with an iTunes `trackId`, `artistId` or
 `collectionId`.
 
-## 📦 Install from npm
+## 📦 Published container
 
-Run the provider directly:
-
-```bash
-npx plex-apple-metadata-provider
-```
-
-Or install the command globally:
+Pull the versioned multi-architecture image from GitHub Container Registry:
 
 ```bash
-npm install --global plex-apple-metadata-provider
-plex-apple-metadata-provider
+docker pull ghcr.io/smolsoftboi/plex-apple-metadata-provider:0.1.0
 ```
 
-The command uses the configuration defaults below. Set environment variables
-before launching it when you need to override them. The package also exports
-`createApp` for embedding the Fastify application in another Node.js service.
+Run it with a persistent cache and a loopback-only port:
+
+```bash
+docker run --detach \
+  --name plex-apple-metadata-provider \
+  --restart unless-stopped \
+  --publish 127.0.0.1:3000:3000 \
+  --volume plex-apple-metadata-provider-data:/app/data \
+  ghcr.io/smolsoftboi/plex-apple-metadata-provider:0.1.0
+```
+
+Use `latest` to follow the newest stable release. Pin a version or digest for
+repeatable deployments.
 
 ## 🚀 Local development
 
@@ -104,6 +107,8 @@ npm run build
 ```
 
 ## 🐳 Docker
+
+Build locally with Compose:
 
 ```bash
 docker compose up --build

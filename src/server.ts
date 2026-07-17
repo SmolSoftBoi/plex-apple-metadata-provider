@@ -1,5 +1,3 @@
-#!/usr/bin/env node
-
 import { createApp } from "./app.js";
 import { loadConfig } from "./config.js";
 

@@ -14,6 +14,10 @@ FROM node:24.18.0-bookworm-slim AS runtime
 ENV NODE_ENV=production
 WORKDIR /app
 
+LABEL org.opencontainers.image.source="https://github.com/SmolSoftBoi/plex-apple-metadata-provider"
+LABEL org.opencontainers.image.description="Unofficial Apple catalogue metadata provider scaffold for Plex"
+LABEL org.opencontainers.image.licenses="MIT"
+
 RUN groupadd --system provider && useradd --system --gid provider provider
 
 COPY package.json package-lock.json ./
